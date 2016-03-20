@@ -2,7 +2,7 @@
 
 # the user should be a root
 if [ $(id -u) -ne 0 ]; then
-    echo "Skript muss als Root gestartet werden"
+    echo "the user should be a root"
     exit
 fi
 
