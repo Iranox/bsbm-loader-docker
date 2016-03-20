@@ -6,7 +6,7 @@ RUN wget http://downloads.sourceforge.net/project/bsbmtools/bsbmtools/bsbmtools-
 RUN rm  bsbmtools-v0.2.zip
 WORKDIR bsbmtools-0.2
 
-RUN mkdir -p data/benckmark/ttl &&  mkdir -p data/benchmark/sql 
+RUN mkdir -p data/benchmark/ttl &&  mkdir -p data/benchmark/sql 
 VOLUME data
 
 
