@@ -1,16 +1,10 @@
-data:
-  build: data/.
-mysql:
-  image: mysql
-  ports:
-  - "3306:3306"
+bsbm:
+  build: data
   environment:
-  - MYSQL_DATABASE=benchmark
-  - MYSQL_ROOT_PASSWORD=password
-  volumes:
-  - ./data:/docker-entrypoint-initdb.d
-  volumes_from:
-  - data
+  - SCALING_FACTOR=1000
+
+
+
  
  
 
