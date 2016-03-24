@@ -1,9 +1,22 @@
-bsbm:
-  build: data
+bsbm_generator:
+  build: bsbm_generator
   environment:
-  - SCALING_FACTOR=1000
+    - SCALING_FACTOR=1000
+
+mysql:
+  image: mysql
+
+mongodb:
+  image: mongodb
 
 
+data:
+  image: java
+  volumes:
+    - /data/source/bsbm/
+    - /data/dbs/monogo/
+    - /data/dbs/mysql/
+    - /data/dbs/virtuoso/
 
  
  
