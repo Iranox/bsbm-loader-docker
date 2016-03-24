@@ -1,5 +1,6 @@
+#services: 
 bsbm_generator:
-  build: bsbm_generator
+  build: ./bsbm_generator
   environment:
     - SCALING_FACTOR=1000
 
@@ -10,7 +11,15 @@ mysql:
 # docker-compose run mysql /bsbm/scripts/loadmysql.sh
 # loadmysql contains instructions to load the sql data from /bsbm/data/source/bsbm/sql
 
-    
+
+
+bsbm_loader:
+ build: ./bsbm_loader
+ links:
+    - mongodb
+    - mysql
+    .....
+# docker-compose run bsbm_loader load_all.sh gets connection information for env_variables, like scale factor    
 
 mongodb:
   image: mongodb
