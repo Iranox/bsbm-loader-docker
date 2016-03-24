@@ -5,6 +5,12 @@ bsbm_generator:
 
 mysql:
   image: mysql
+  volumes_from:
+    - data
+# docker-compose run mysql /bsbm/scripts/loadmysql.sh
+# loadmysql contains instructions to load the sql data from /bsbm/data/source/bsbm/sql
+
+    
 
 mongodb:
   image: mongodb
@@ -13,10 +19,11 @@ mongodb:
 data:
   image: java
   volumes:
-    - /data/source/bsbm/
-    - /data/dbs/monogo/
-    - /data/dbs/mysql/
-    - /data/dbs/virtuoso/
+    - /bsbm/data/source/bsbm/
+    - /bsbm/data/dbs/monogo/
+    - /bsbm/data/dbs/mysql/
+    - /bsbm/data/dbs/virtuoso/
+    - ./scripts:/bsbm/scripts/
 
  
  
