@@ -1,7 +1,25 @@
-bsbm:
-  build: data
+bsbm_generator:
+  build: bsbm_generator
   environment:
-  - SCALING_FACTOR=1000
+   - SCALING_FACTOR=1000
+  volumes_from:
+   - data
+mysql:
+  image: mysql
+  ports:
+   - "3307:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: password
+    MYSQL_DATABASE: benchmark
+  volumes_from:
+   - data
+data:
+  image: java
+  volumes:
+   - /bsbm/data/benchmark/sql
+   - /bsbm/data/benchmark/ttl
+  
+
 
 
 
