@@ -18,6 +18,7 @@ data:
   volumes:
    - /bsbm/data/benchmark/sql
    - /bsbm/data/benchmark/ttl
+   - ./scripts:/bsbm/scripts
   
 
 

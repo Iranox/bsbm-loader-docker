@@ -1,8 +1,9 @@
 #!/bin/bash 
 
-cd ..
+cd 
+ls
 
-for i in benchmark/sql/*.sql
+for i in bsbm/data/benchmark/sql/*.sql
 do
   echo "file=$i"
   mysql -u root --password=password  test< $i
