@@ -1,23 +1,23 @@
 # bsbmloader-docker
 
-## bsbm
-
 This bsbm dockerfile download the bsbmtool from SourceForge and create ttl and
 sql files.
 
 ### Run
- You can build  and run a simple data-container with:      
- `docker build -t bsbm .`       
- `docker run -e SCALING_FACTOR=100 bsbm`
+ You can build  and run  with:             
+ `docker-compose up`
 
-### Run and get data
-If you want to get all sql and ttl files, you should use this:   
-`cd data`   
-`chmod +x generate_data.sh`   
-`sudo ./generate_data.sh`       
-This generate a dataset with 100 products   
+ This build different database:  
 
-For a large dataset you this:
+* MySQl:   Port 3307  password password benchmark  
+* Postgres Port 3308   password password database bsbm
+* Elastic  Ports 9200/9300
+* Mongo Port 27018
+* CouchDB Port 5984
 
-`sudo ./generate_data 1000`   
-This generate a dataset with 1000 products.
+### Import Data in MySQl
+
+You can import the bsbm files with   
+``docker exec bsbmloaderdocker_mysql_1 /bsbm/scripts/import_sql.sh``
+
+But this function could remove in the next version.

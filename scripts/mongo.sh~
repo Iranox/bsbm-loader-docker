@@ -1,0 +1,3 @@
+#!/bin/bash
+cd bsbm-loader/loader
+java -jar bsbmloader-jar-with-dependencies.jar -parseToMongo -u $ADMIN -p $PASSWORD -urlMysql $URL -hostNosql $HOST_NOSQL -portNosql $PORT_NOSQL -databaseName $DATABASE

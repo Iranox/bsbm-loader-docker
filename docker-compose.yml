@@ -4,6 +4,10 @@ bsbm_generator:
    - SCALING_FACTOR=1000
   volumes_from:
    - data
+bsbmloader:
+  build: bsbmloader
+  volumes_from:
+   - data
 mysql:
   image: mysql
   ports:
@@ -11,6 +15,34 @@ mysql:
   environment:
     MYSQL_ROOT_PASSWORD: password
     MYSQL_DATABASE: benchmark
+  volumes_from:
+   - data
+postgres:
+  image: postgres
+  ports:
+   - "3308:3307"
+  environment:
+    POSTGRES_PASSWORD: password
+    POSTGRES_DB: bsbm
+  volumes_from:
+   - data
+mongodb:
+  image: mongo 
+  ports:
+   - "27018:27017"
+  volumes_from:
+   - data
+couchdb: 
+  image: couchdb
+  ports:
+   - "5984:5984"
+  volumes_from:
+   - data
+elasticsreach:
+  image: elasticsearch:1.4
+  ports:
+   - "9200:9200"
+   - "9300:9300"
   volumes_from:
    - data
 data:
