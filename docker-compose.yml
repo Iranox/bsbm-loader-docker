@@ -6,14 +6,38 @@ bsbm_generator:
    - data
 bsbmloader:
   build: bsbmloader
+  environment:
+    - Target1="offer"
+    - Source1="product"
+    - ForgeinKey1="product"
+    - PrimaryKey1="nr"
+    - Target2="review"
+    - Source2="product"
+    - ForgeinKey2="product"
+    - PrimaryKey2="nr"
+    - MDatabaseName="bsbm"
+    - MSource1="product"
+    - MForginKey1="productFeature"
+    - MJoin1="productfeatureproduct"
+    - MSecondSource1="productfeature"
+    - MPkSecond1="nr"
+    - MPk1="nr"
+    - MSecondFkey1="product"
+    - MSource2="product"
+    - MForginKey2="productFeature"
+    - MJoin2="productfeatureproduct"
+    - MSecondSource2="productfeature"
+    - MPkSecond2="nr"
+    - MPk2="nr"
+    - MSecondFkey2="product"
   links:
     - mysql
     - mongodb
-    - elasticsearch
-    - postgres
-    - couchdb
+#    - elasticsearch
+#    - postgres
+#    - couchdb
   volumes_from:
-   - data
+    - data
 mysql:
   image: mysql
   ports:
@@ -23,47 +47,37 @@ mysql:
     MYSQL_DATABASE: benchmark
   volumes_from:
    - data
-postgres:
-  image: postgres
-  ports:
-   - "3308:3307"
-  environment:
-    POSTGRES_PASSWORD: password
-    POSTGRES_DB: bsbm
-  volumes_from:
-   - data
+#postgres:
+#  image: postgres
+#  ports:
+#   - "3308:3307"
+#  environment:
+#    POSTGRES_PASSWORD: password
+#    POSTGRES_DB: bsbm
+#  volumes_from:
+#   - data
 mongodb:
-  image: mongo 
+  image: mongo
   ports:
    - "27018:27017"
   volumes_from:
    - data
-couchdb: 
-  image: couchdb
-  ports:
-   - "5984:5984"
-  volumes_from:
-   - data
-elasticsearch:
-  image: elasticsearch:1.4
-  ports:
-   - "9200:9200"
-   - "9300:9300"
-  volumes_from:
-   - data
+#couchdb:
+#  image: couchdb
+#  ports:
+#   - "5984:5984"
+#  volumes_from:
+#   - data
+#elasticsearch:
+#  image: elasticsearch:1.4
+#  ports:
+#   - "9200:9200"
+#   - "9300:9300"
+#  volumes_from:
+#   - data
 data:
   image: java
   volumes:
    - /bsbm/data/benchmark/sql
    - /bsbm/data/benchmark/ttl
    - ./scripts:/bsbm/scripts
-  
-
-
-
-
- 
- 
-
-  
-
