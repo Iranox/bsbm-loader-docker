@@ -18,6 +18,4 @@ sql files.
 ### Import Data in MySQl
 
 You can import the bsbm files with   
-``docker exec bsbmloaderdocker_mysql_1 /bsbm/scripts/import_sql.sh``
-
-But this function could remove in the next version.
+``docker-compose run mysl /bsbm/scripts/import_sql.sh``

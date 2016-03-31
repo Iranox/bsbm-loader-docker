@@ -6,6 +6,12 @@ bsbm_generator:
    - data
 bsbmloader:
   build: bsbmloader
+  links:
+    - mysql
+    - mongodb
+    - elasticsearch
+    - postgres
+    - couchdb
   volumes_from:
    - data
 mysql:
@@ -38,7 +44,7 @@ couchdb:
    - "5984:5984"
   volumes_from:
    - data
-elasticsreach:
+elasticsearch:
   image: elasticsearch:1.4
   ports:
    - "9200:9200"
