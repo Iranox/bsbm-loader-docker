@@ -1,7 +1,7 @@
 bsbm_generator:
   build: bsbm_generator
   environment:
-   - SCALING_FACTOR=1000
+   - SCALING_FACTOR=10
   volumes_from:
    - data
 bsbmloader:
@@ -33,9 +33,9 @@ bsbmloader:
   links:
     - mysql
     - mongodb
-#    - elasticsearch
-#    - postgres
-#    - couchdb
+    - elasticsearch
+    - postgres
+    - couchdb
   volumes_from:
     - data
 mysql:
@@ -47,34 +47,36 @@ mysql:
     MYSQL_DATABASE: benchmark
   volumes_from:
    - data
-#postgres:
-#  image: postgres
-#  ports:
-#   - "3308:3307"
-#  environment:
-#    POSTGRES_PASSWORD: password
-#    POSTGRES_DB: bsbm
-#  volumes_from:
-#   - data
+postgres:
+  image: postgres
+  ports:
+   - "3308:3307"
+  environment:
+    POSTGRES_PASSWORD: password
+    POSTGRES_DB: bsbm
+  volumes_from:
+   - data
 mongodb:
   image: mongo
   ports:
    - "27018:27017"
   volumes_from:
    - data
-#couchdb:
-#  image: couchdb
-#  ports:
-#   - "5984:5984"
-#  volumes_from:
-#   - data
-#elasticsearch:
-#  image: elasticsearch:1.4
-#  ports:
-#   - "9200:9200"
-#   - "9300:9300"
-#  volumes_from:
-#   - data
+couchdb:
+  image: tutum/couchdb
+  environment:
+     COUCHDB_PASS: password
+  ports:
+   - "5984:5984"
+  volumes_from:
+   - data
+elasticsearch:
+  image: elasticsearch:1.4
+  ports:
+   - "9200:9200"
+   - "9300:9300"
+  volumes_from:
+   - data
 data:
   image: java
   volumes:

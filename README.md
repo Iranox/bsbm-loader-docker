@@ -15,7 +15,10 @@ sql files.
 * Mongo Port 27018
 * CouchDB Port 5984
 
-### Import Data in MySQl
+This create only the databases and some other container.
 
-You can import the bsbm files with   
-``docker-compose run mysl /bsbm/scripts/import_sql.sh``
+### Start bsbmloader with generteData
+
+You can start with   
+``cd scripts``    
+``./start.sh``
