@@ -9,16 +9,6 @@ chmod +x bsbm_generator/*.sh
 
 cd ..
 
-#start docker compose
-#docker-compose up &
-
-#generate sql and ttl files
-docker-compose run bsbm_generator /bsbm/scripts/bsbm_generator/generateData.sh
-
-# import data to mysql
-docker-compose run mysql /bsbm/scripts/mysql/import_sql.sh
-sleep 3
-
 # loade data to mongo and materilize
 docker-compose run bsbmloader /bsbm/scripts/bsbmloader/mongoParser/parse_to_mongo.sh
 docker-compose run bsbmloader /bsbm/scripts/bsbmloader/mongoParser/materilize_n_to_1.sh

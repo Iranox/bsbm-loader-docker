@@ -1,7 +1,7 @@
 bsbm_generator:
   build: bsbm_generator
   environment:
-   - SCALING_FACTOR=10
+   - SCALING_FACTOR=100
   volumes_from:
    - data
 bsbmloader:
