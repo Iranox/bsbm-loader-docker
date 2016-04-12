@@ -28,6 +28,12 @@ If you do not want this, you shall use this command :
 ``cd scripts``    
 ``./start_without_import.sh``
 
+
+## Start benchmark mongodb
+
+``cd scripts``    
+``./start_benchmark_mongodb.sh``
+
 ## Postgres
 
  At the moment postgres is disable because there is an error in the bsbmloader .
