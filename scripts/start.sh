@@ -10,7 +10,7 @@ chmod +x bsbm_generator/*.sh
 cd ..
 
 #start docker compose
-docker-compose up &
+#docker-compose up &
 
 #generate sql and ttl files
 docker-compose run bsbm_generator /bsbm/scripts/bsbm_generator/generateData.sh
