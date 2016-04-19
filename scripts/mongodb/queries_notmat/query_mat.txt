@@ -1,0 +1,40 @@
+Query 1
+db.product_matComplex.aggregate([{$match:{$and:[{"productFeature.nr":13}, {"productFeature.nr":359}, {"propertyNum1":{$gt:824}}]}},{$project:{"label":1, "_id":0,"nr":1}},{$lookup:{from:"producttypeproduct", localField:"nr",foreignField:"product", as:"type"}},{$match:{"type.productType":9}},{$limit:10}]).pretty()
+
+Query 2
+db.product_matComplex.aggregate([{$match:{"nr":4}}, {$project:{"label":1, "comment":1, "producer":1,"productFeature":1, "propertyTex1":1,  "propertyTex2":1, "propertyTex3":1, "propertyTex4":1, "propertyTex5":1,"propertyNum1":1,"propertyNum2":1,"propertyNum3":1, "propertyNum4":1 }}]).pretty()
+
+Query 3
+db.product_matComplex.aggregate([{$match:{$and:[{"productFeature.nr":37}, {"productFeature.nr":{$ne:359}}, {"propertyNum1":{$gt:824}}, {"propertyNum3":{$lt:5000}}]}},{$project:{"label":1, "_id":0,"nr":1}},{$lookup:{from:"producttypeproduct", localField:"nr",foreignField:"product", as:"type"}},{$match:{"type.productType":10}},{$limit:10}]).pretty()
+
+Query 4
+
+db.product_matComplex.aggregate([{$match:{$and:[{"nr":65}, {"productFeature.nr":409}]}}, {$match:{$or:[{$and:[{"propertyNum1":{$lt:1}},{"productFeature.nr":3}]},{$and:[{"propertyNum2":{$gt:1}},{"productFeature.nr":409}]}]}}, {$lookup:{from:"producttypeproduct", localField:"nr", foreignField:"product", as:"p"}},{$match:{"p.productType":10}}, {$project:{"label":1, "nr":1, "propertyTex1":1, "_id":0}}]).pretty()
+
+Query 5
+
+
+
+Query 7
+db.offer.aggregate([{$match:{$and:[{"product.nr":1, "vendor.country":"GB"}, {"validTo":{$gt:ISODate("2008-05-19T00:00:00Z")}}]}},{$lookup:{from:"review", localField:"product.nr", foreignField:"product", as:"r"}},{$project:{"r.text":1, "r.rating1":1, "r.rating2":1, "r.person.name":1, "r.title":1, "price":1, "nr":1, "product.label":1, "vendor.nr":1,"vendor.label":1}}]).pretty()
+
+
+Query 8
+db.review.aggregate([{$match:{"product":20, "language":"en"}}]).pretty()
+
+Query 9
+db.review.aggregate([{$match:{"nr":20}},{$project:{"person":1}}, {$lookup:{from:"review", localField:"person.nr", foreignField:"person.nr", as:"r"}}, {$project:{"person.name":1,"person.nr":1, "person.mbox_sh1sum":1, "person.country":1, "r.product":1, "r.title":1, "r.nr":1} }]).pretty()
+
+
+Query 10
+db.offer.aggregate([{$match:{"product.nr":20,deliveryDays:{$lte:3}, "validFrom" :{ $gt:ISODate("2008-03-12T00:00:00Z")}, "vendor.country":"US"}}, {$project: {"nr":1, "price":1}}]).pretty()
+
+Query 11
+
+db.offer.find({"nr":50},{_id:0, nr:0})
+
+db.offer.aggregate([{$match: {nr:50}},{ $project: {_id:0,product:1, producer:1,vendor:1, price:1, validFrom:1, validTo:1, deliveryDays:1, offerWebpage:1, publisher:1, publishDate:1}}])
+
+Query 12
+db.offer.aggregate([{$match:{nr:20}},{$group:{_id:{productNr:"$product.nr", productlabel:"$product.label", vendorname:"$vendor.label", vendorhomepage:"$vendorhomepage", offerUrl:"$offerWebpage", price:"$price", deliveryDays: "$deliveryDays", validTo:"$validTo"}}}]).pretty()
+
