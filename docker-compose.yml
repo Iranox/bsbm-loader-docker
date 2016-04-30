@@ -1,35 +1,13 @@
 bsbm_generator:
   build: bsbm_generator
   environment:
-   - SCALING_FACTOR=100
+   - SCALING_FACTOR=27850
   volumes_from:
    - data
 bsbmloader:
   build: bsbmloader
   environment:
-    - Target1="offer"
-    - Source1="product"
-    - ForgeinKey1="product"
-    - PrimaryKey1="nr"
-    - Target2="review"
-    - Source2="product"
-    - ForgeinKey2="product"
-    - PrimaryKey2="nr"
-    - MDatabaseName="bsbm"
-    - MSource1="product"
-    - MForginKey1="productFeature"
-    - MJoin1="productfeatureproduct"
-    - MSecondSource1="productfeature"
-    - MPkSecond1="nr"
-    - MPk1="nr"
-    - MSecondFkey1="product"
-    - MSource2="product"
-    - MForginKey2="productFeature"
-    - MJoin2="productfeatureproduct"
-    - MSecondSource2="productfeature"
-    - MPkSecond2="nr"
-    - MPk2="nr"
-    - MSecondFkey2="product"
+    - db="bsbm"
   links:
     - mysql
     - mongodb
@@ -59,7 +37,7 @@ postgres:
 mongodb:
   image: mongo
   ports:
-   - "27018:27017"
+   - "127.0.0.1:27018:27017"
   volumes_from:
    - data
 couchdb:
