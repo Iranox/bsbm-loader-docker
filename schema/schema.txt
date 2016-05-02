@@ -1,0 +1,134 @@
+product_matComplex:
+
+{
+  _id: automatic generate id
+   productfeature: [
+     {
+         nr: productfeature number
+         _id: automatic generate id
+         label: label of a productfeature
+         comment: a comment about a productfeature
+         publishDate: a date (ISO format)
+         publisher: the publisher numbner
+     }
+   ]
+   comment: comment about a product
+   label: label of the product
+   nr: product number
+   producer: {
+          nr: producer number
+          _id: automatic generate id
+          label: label of a producer
+          comment: comment about a producer
+          publishDate: a date (ISO format)
+          publisher: the publisher numbner
+          homepage: homepage of the producer
+          country: a shortcut of the country
+   }
+   "propertyNum1" : a integer number,
+   "propertyNum2" : a integer number,
+   "propertyNum3" : a integer number,can be null,
+   "propertyNum4" : a integer number,can be null,
+   "propertyNum5" : a integer number, can be null,
+   "propertyNum6" : a integer number,can be null,
+   "propertyTex1" : a text about the product
+   "propertyTex2" : a text about the product
+   "propertyTex3" : a text about the product, can be null
+   "propertyTex4" : a text about the product, can be null
+   publishDate: a date (ISO format)
+   publisher: the publisher numbner
+}
+
+Product:
+
+{
+  _id: automatic generate id
+  nr: product number
+  comment: comment about a product
+  producer: {
+     _id: automatic generate id
+     nr: producer number
+	 label: producer label
+	 comment: comment about a producer
+	 homepage: homepage
+	 country: shortcut of a country
+	 publisher: publisher id
+	 pusblishDate: a date
+  }
+  propertyNum1: a number adove 0
+  propertyNum2: a number adove 0
+  propertyNum3: a number adove 0, can be null
+  propertyNum4: a number adove 0, can be null
+  propertyNum5: a number adove 0, can be null
+  propertyNum6: a number adove 0, can be null
+  propertyText1: a text about the product, can be null
+  propertyText2: a text about the product, can be null
+  propertyText3: a text about the product, can be null
+  propertyText4: a text about the product, can be null
+  propertyText5: a text about the product, can be null
+  propertyText6: a text about the product, can be null
+  publisher: publisher id
+  pusblishDate: a date
+}
+
+offer:
+
+{
+  _id: automatic generate id
+  nr: offer number
+  product: {
+      _id: automatic generate id
+      nr: product number
+      comment: comment about a product
+      producer: {
+        _id: automatic generate id
+        nr: producer number
+	    label: producer label
+	    comment: comment about a producer
+	    homepage: homepage
+	    country: shortcut of a country
+	    publisher: publisher id
+	    pusblishDate: a date
+      }
+      propertyNum1: a number adove 0
+      propertyNum2: a number adove 0
+      propertyNum3: a number adove 0, can be null
+      propertyNum4: a number adove 0, can be null
+      propertyNum5: a number adove 0, can be null
+      propertyNum6: a number adove 0, can be null
+      propertyText1: a text about the product, can be null
+      propertyText2: a text about the product, can be null
+      propertyText3: a text about the product, can be null
+      propertyText4: a text about the product, can be null
+      propertyText5: a text about the product, can be null
+      propertyText6: a text about the product, can be null
+      publisher: publisher id
+      pusblishDate: a date
+  }
+  producer: {
+       _id: automatic generate id
+        nr: producer number
+	    label: producer label
+	    comment: comment about a producer
+	    homepage: homepage
+	    country: shortcut of a country
+	    publisher: publisher id
+	    pusblishDate: a date
+  }
+  vendor: {
+     nr: vendor number
+     _id: automatic generate id
+     label: vendor label
+     comment: comment about the vendor
+     hompage: vendor homepage
+  	 country: shortcut of a country
+  }
+  deliveryDays: a interger
+  offerWebpage: an offer webpage
+  price: a float number
+  producer: producer number
+  publisher: publisher number
+  validFrom: a date
+  validTo: a date
+  
+}

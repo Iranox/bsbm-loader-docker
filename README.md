@@ -38,6 +38,9 @@ If you do not want this, you shall use this command :
 
  At the moment postgres is disable because there is an error in the bsbmloader .
 
+## Change database 
+Overwrite db = "bsbm" with your database.
+
 ## Error
 #### permission diened
 If you have this kind of error you must run   
