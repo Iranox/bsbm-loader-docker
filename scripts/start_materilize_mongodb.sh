@@ -6,4 +6,4 @@ docker-compose run bsbmloader sh /bsbm/scripts/bsbmloader/mongoParser/materilize
 docker-compose run bsbmloader sh /bsbm/scripts/bsbmloader/mongoParser/materilize_review.sh
 docker-compose run bsbmloader sh /bsbm/scripts/bsbmloader/mongoParser/materilize_productfeature_complex.sh
 docker-compose run bsbmloader sh /bsbm/scripts/bsbmloader/mongoParser/materilize_query2.sh
-docker-compose run bsbmloader sh /bsbm/scripts/bsbmloader/mongoParser/materilize_productfeatureproduct.sh
+#docker-compose run bsbmloader sh /bsbm/scripts/bsbmloader/mongoParser/materilize_productfeatureproduct.sh
