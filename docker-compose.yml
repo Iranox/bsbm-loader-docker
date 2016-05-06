@@ -2,6 +2,7 @@ bsbm_generator:
   build: bsbm_generator
   environment:
    - SCALING_FACTOR=27850
+   - db=bsbm
   volumes_from:
    - data
 bsbmloader:
@@ -38,6 +39,8 @@ mongodb:
   image: mongo
   ports:
    - "127.0.0.1:27018:27017"
+  environment:
+    - MONGO_DB= bsbm
   volumes_from:
    - data
 couchdb:
