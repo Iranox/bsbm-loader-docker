@@ -38,7 +38,7 @@ postgres:
 mongodb:
   image: mongo
   ports:
-   - "127.0.0.1:27018:27017"
+    - "27018:27017"
   environment:
     - MONGO_DB= bsbm
   volumes_from:
@@ -58,6 +58,16 @@ elasticsearch:
    - "9300:9300"
   volumes_from:
    - data
+virtuoso:
+  image: joernhees/virtuoso
+  ports:
+    - "8890:8890"
+    - "1111:1111"
+  volumes_from:
+    - data
+  environment:
+   - "NumberOfBuffers=170000"
+   - "MaxDirtyBuffers=130000"
 data:
   image: java
   volumes:
