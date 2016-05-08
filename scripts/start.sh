@@ -17,7 +17,7 @@ docker-compose run bsbm_generator /bsbm/scripts/bsbm_generator/generateData.sh
 
 # import data to mysql
 docker-compose run mysql /bsbm/scripts/mysql/import_sql.sh
-sleep 3
+sleep 10
 
 # loade data to mongo and materilize
 docker-compose run bsbmloader /bsbm/scripts/bsbmloader/mongoParser/parse_to_mongo.sh
@@ -26,10 +26,10 @@ docker-compose run bsbmloader /bsbm/scripts/bsbmloader/mongoParser/parse_to_mong
 
 
 #import data to elasticsearch
-docker-compose run bsbmloader  sh /bsbm/scripts/bsbmloader/elasticParser/parse_to_elastic.sh
+#docker-compose run bsbmloader  sh /bsbm/scripts/bsbmloader/elasticParser/parse_to_elastic.sh
 
 # import data to couchdb
- docker-compose run bsbmloader /bsbm/scripts/bsbmloader/couchParser/parse_to_couch.sh
+#docker-compose run bsbmloader /bsbm/scripts/bsbmloader/couchParser/parse_to_couch.sh
 
  #sleep 3
 
