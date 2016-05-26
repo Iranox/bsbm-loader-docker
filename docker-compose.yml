@@ -9,11 +9,11 @@ bsbmloader:
   build: bsbmloader
   environment:
     - db="bsbm"
-    - parseToMongo="false"
+    - parseToMongo="true"
     - parseToElastic="false"
-    - parseToCouch="true"
+    - parseToCouch="false"
     - parseToPostges="false"
-    - generateData="true"
+    - generateData="false"
   links:
     - mysql
     - mongodb
