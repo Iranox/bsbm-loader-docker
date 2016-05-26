@@ -1,7 +1,7 @@
 bsbm_generator:
   build: bsbm_generator
   environment:
-   - SCALING_FACTOR=27850
+   - SCALING_FACTOR=100
    - db=bsbm
   volumes_from:
    - data
@@ -9,6 +9,11 @@ bsbmloader:
   build: bsbmloader
   environment:
     - db="bsbm"
+    - parseToMongo="false"
+    - parseToElastic="false"
+    - parseToCouch="true"
+    - parseToPostges="false"
+    - generateData="true"
   links:
     - mysql
     - mongodb

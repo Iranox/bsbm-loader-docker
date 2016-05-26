@@ -19,26 +19,33 @@ This create only the databases and some other container.
 
 ## Start bsbmloader and generate Data
 
+Parse to Nosql:
+With following environment
+``parseToMongo="true"``    
+``parseToElastic="true"``
+``parseToCouch="true"``
+``parseToPostges="true"``
+
 You can start with   
 ``cd scripts``    
-``./start.sh``
+``sh start.sh``
 
 This generate new sql and ttl files and overwrite existing files.  
-If you do not want this, you shall use this command :  
+If you do not want this, you shall change this :  
+``generateData=true``    
+``sh start_without_import.sh``
+
+
+## Start materilize mongodb
+
 ``cd scripts``    
-``./start_without_import.sh``
-
-
-## Start benchmark mongodb
-
-``cd scripts``    
-``./start_benchmark_mongodb.sh``
+``sh start_materilize_mongodb.sh``
 
 ## Postgres
 
  At the moment postgres is disable because there is an error in the bsbmloader .
 
-## Change database 
+## Change database
 Overwrite db = "bsbm" with your database.
 
 ## Error
