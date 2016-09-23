@@ -12,8 +12,8 @@ bsbm-inst:	http://www4.wiwiss.fu-berlin.de/bizer/bsbm/v01/instances/
 [SourceDeclaration]
 sourceUri	datasource1
 connectionUrl	jdbc:teiid:quickstart@mm://localhost:31000
-username	Iranox
-password	Seraphin11!
+username	root
+password	password
 driverClass	org.teiid.jdbc.TeiidDriver
 
 [MappingDeclaration] @collection [[
