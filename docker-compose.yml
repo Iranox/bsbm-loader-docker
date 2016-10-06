@@ -1,7 +1,7 @@
 bsbm_generator:
   build: bsbm_generator
   environment:
-   - SCALING_FACTOR=100
+   - SCALING_FACTOR=250
    - db=bsbm
   volumes_from:
    - data
@@ -9,11 +9,6 @@ bsbmloader:
   build: bsbmloader
   environment:
     - db="bsbm"
-    - parseToMongo="true"
-    - parseToElastic="false"
-    - parseToCouch="false"
-    - parseToPostges="false"
-    - generateData="false"
   links:
     - mysql
     - mongodb
@@ -76,6 +71,6 @@ virtuoso:
 data:
   image: java
   volumes:
+   - ./scripts:/bsbm/scripts
    - /bsbm/data/benchmark/sql
    - /bsbm/data/benchmark/ttl
-   - ./scripts:/bsbm/scripts
