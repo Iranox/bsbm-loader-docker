@@ -19,36 +19,17 @@ This create only the databases and some other container.
 
 ## Start bsbmloader and generate Data
 
-Parse to Nosql:
-With following environment
-``parseToMongo="true"``    
-``parseToElastic="true"``
-``parseToCouch="true"``
-``parseToPostges="true"``
 
 You can start with   
 ``cd scripts``    
-``sh start.sh``
+``sh start.sh 250``
 
-This generate new sql and ttl files and overwrite existing files.  
-If you do not want this, you shall change this :  
-``generateData=true``    
-``sh start_without_import.sh``
+This creates two datasets (MySQL and ttl) with 250 products. If you need a larger 
+dataset you must change the number 250 to another number.  
+
+## Errors
 
 
-## Start materilize mongodb
-
-``cd scripts``    
-``sh start_materilize_mongodb.sh``
-
-## Postgres
-
- At the moment postgres is disable because there is an error in the bsbmloader .
-
-## Change database
-Overwrite db = "bsbm" with your database.
-
-## Error
 #### permission diened
 If you have this kind of error you must run   
 `chmod +x /path/file.sh`
