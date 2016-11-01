@@ -1,10 +1,9 @@
 sudo: required
 
-language: java
-
 services:
   - docker
 
 before_install:
     - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-engine
     - docker-compose --version
+    - docker-compose up
