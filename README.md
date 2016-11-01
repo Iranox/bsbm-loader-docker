@@ -1,3 +1,6 @@
+
+[![Build Status](https://travis-ci.org/Iranox/mapbench-data.svg?branch=feature%2Fteiid)](https://travis-ci.org/Iranox/mapbench-data)
+
 # bsbmloader-docker
 
 This bsbm dockerfile download the bsbmtool from SourceForge and create ttl and
