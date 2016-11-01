@@ -1,10 +1,5 @@
 bsbm_generator:
   build: bsbm_generator
-  environment:
-   - SCALING_FACTOR=250
-   - db=bsbm
-  volumes_from:
-   - data
 bsbmloader:
   build: bsbmloader
   environment:
@@ -15,8 +10,6 @@ bsbmloader:
     - elasticsearch
     - postgres
     - couchdb
-  volumes_from:
-    - data
 mysql:
   image: mysql
   ports:
@@ -24,8 +17,6 @@ mysql:
   environment:
     MYSQL_ROOT_PASSWORD: password
     MYSQL_DATABASE: benchmark
-  volumes_from:
-   - data
 postgres:
   image: postgres
   ports:
@@ -33,38 +24,28 @@ postgres:
   environment:
     POSTGRES_PASSWORD: password
     POSTGRES_DB: bsbm
-  volumes_from:
-   - data
 mongodb:
   image: mongo
   ports:
     - "27018:27017"
   environment:
     - MONGO_DB= bsbm
-  volumes_from:
-   - data
 couchdb:
   image: tutum/couchdb
   environment:
      COUCHDB_PASS: password
   ports:
    - "5984:5984"
-  volumes_from:
-   - data
 elasticsearch:
   image: elasticsearch:1.4
   ports:
    - "9200:9200"
    - "9300:9300"
-  volumes_from:
-   - data
 virtuoso:
   image: joernhees/virtuoso
   ports:
     - "8890:8890"
     - "1111:1111"
-  volumes_from:
-    - data
   environment:
    - "NumberOfBuffers=170000"
    - "MaxDirtyBuffers=130000"
