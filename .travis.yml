@@ -6,4 +6,6 @@ services:
 before_install:
     - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-engine
     - docker-compose --version
+
+script:
     - docker-compose up
