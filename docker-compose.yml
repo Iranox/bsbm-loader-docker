@@ -27,7 +27,7 @@ mysql2:
 postgres:
   image: postgres
   ports:
-   - "3308:3307"
+   - "3309:3307"
   environment:
     POSTGRES_PASSWORD: password
     POSTGRES_DB: bsbm
