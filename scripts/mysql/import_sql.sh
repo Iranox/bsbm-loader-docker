@@ -1,7 +1,6 @@
 #!/bin/bash
 
 cd
-ls
 
 for i in /bsbm/data/benchmark/sql/*.sql
 do
