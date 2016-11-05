@@ -1,4 +1,4 @@
-bsbm_generator:
+base_bsbm_generator:
   build: bsbm_generator
 bsbmloader:
   build: bsbmloader
@@ -10,45 +10,45 @@ bsbmloader:
     - elasticsearch
     - postgres
     - couchdb
-mysql:
+base_mysql:
   image: mysql
   ports:
    - "3307:3306"
   environment:
     MYSQL_ROOT_PASSWORD: password
     MYSQL_DATABASE: benchmark
-mysql2:
+base_mysql2:
   image: mysql
   ports:
    - "3308:3306"
   environment:
     MYSQL_ROOT_PASSWORD: password
     MYSQL_DATABASE: benchmark
-postgres:
+base_postgres:
   image: postgres
   ports:
    - "3309:3307"
   environment:
     POSTGRES_PASSWORD: password
     POSTGRES_DB: bsbm
-mongodb:
+base_mongodb:
   image: mongo
   ports:
     - "27018:27017"
   environment:
     - MONGO_DB= bsbm
-couchdb:
+base_couchdb:
   image: tutum/couchdb
   environment:
      COUCHDB_PASS: password
   ports:
    - "5984:5984"
-elasticsearch:
+base_elasticsearch:
   image: elasticsearch:1.4
   ports:
    - "9200:9200"
    - "9300:9300"
-virtuoso:
+base_virtuoso:
   image: joernhees/virtuoso
   ports:
     - "8890:8890"
@@ -56,7 +56,7 @@ virtuoso:
   environment:
    - "NumberOfBuffers=170000"
    - "MaxDirtyBuffers=130000"
-data:
+base_data:
   image: java
   volumes:
    - ./scripts:/bsbm/scripts

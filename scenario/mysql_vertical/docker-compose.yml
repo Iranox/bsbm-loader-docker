@@ -1,22 +1,22 @@
-mysql1:
+mysql_vertical_mysql1:
   extends:
     file: ../base/docker-compose.yml
-    service: mysql
+    service: base_mysql
   volumes_from:
-    - data
-mysql2:
+    - mysql_vertical_data
+mysql_vertical_mysql2:
   extends:
     file: ../base/docker-compose.yml
-    service: mysql2
+    service: base_mysql2
   volumes_from:
-    - data
-bsbm:
+    - mysql_vertical_data
+mysql_vertical_bsbm:
   extends:
     file:  ../base/docker-compose.yml
-    service: bsbm_generator
+    service: base_bsbm_generator
   volumes_from:
-    - data
-data:
+    - mysql_vertical_data
+mysql_vertical_data:
   extends:
     file:  ../base/docker-compose.yml
-    service: data
+    service: base_data
