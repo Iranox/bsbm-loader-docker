@@ -1,22 +1,22 @@
 mysql1:
   extends:
-    file: ../docker-compose.yml
+    file: ../base/docker-compose.yml
     service: mysql
   volumes_from:
     - data
 mysql2:
   extends:
-    file: ../docker-compose.yml
+    file: ../base/docker-compose.yml
     service: mysql2
   volumes_from:
     - data
 bsbm:
   extends:
-    file: ../docker-compose.yml
+    file:  ../base/docker-compose.yml
     service: bsbm_generator
   volumes_from:
     - data
 data:
   extends:
-    file: ../docker-compose.yml
+    file:  ../base/docker-compose.yml
     service: data

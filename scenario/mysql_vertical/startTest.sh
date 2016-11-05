@@ -4,8 +4,8 @@
 sh start.sh 100
 
 #test First database
-ret=$(docker-compose run mysql1 sh /bsbm/scripts/mysql/.test/testMySql1.sh)
-ret2=$(docker-compose run mysql2 sh /bsbm/scripts/mysql/.test/testMySql2.sh)
+ret=$(docker-compose run mysql1 sh /bsbm/scripts/mysql/test/testMySql1.sh)
+ret2=$(docker-compose run mysql2 sh /bsbm/scripts/mysql/test/testMySql2.sh)
 
 
 if [ $ret -eq 100 ]
