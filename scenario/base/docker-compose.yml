@@ -5,11 +5,11 @@ bsbmloader:
   environment:
     - db="bsbm"
   links:
-    - mysql
-    - mongodb
-    - elasticsearch
-    - postgres
-    - couchdb
+    - base_mysql
+    - base_mongodb
+    - base_elasticsearch
+    - base_postgres
+    - base_couchdb
 base_mysql:
   image: mysql
   ports:
