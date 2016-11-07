@@ -8,13 +8,16 @@ services:
 before_install:
     - sudo apt-get install -o Dpkg::Options::="--force-confold" --force-yes -y docker-engine
     - docker-compose --version
+    - cd scenario/base
     - docker-compose up -d
 
 script:
     - docker-compose stop
     - docker stop $(docker ps -a -q)
     - docker rm $(docker ps -a -q)
-    - cd mysql_vertical
-    - sh .startTest.sh
+    - cd ..
+    - cd ..
+    - cd scenario/mysql_vertical
+    - sh startTest.sh
     - docker stop $(docker ps -a -q)
     - docker rm $(docker ps -a -q)
