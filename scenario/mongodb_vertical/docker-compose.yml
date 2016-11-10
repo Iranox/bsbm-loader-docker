@@ -1,0 +1,31 @@
+mongodb_vertical_mysql1:
+  extends:
+    file: ../base/docker-compose.yml
+    service: base_mysql
+  volumes_from:
+    - mongodb_vertical_data
+mongodb_vertical_mongodb:
+  extends:
+    file: ../base/docker-compose.yml
+    service: base_mongodb
+  volumes_from:
+    - mongodb_vertical_data
+mongodb_vertical_bsbmloader:
+  extends:
+    file:  ../base/docker-compose.yml
+    service: base_bsbmloader
+  links:
+    - mongodb_vertical_mysql1
+    - mongodb_vertical_mongodb
+  volumes_from:
+    - mongodb_vertical_data
+mongodb_vertical_bsbm:
+  extends:
+    file:  ../base/docker-compose.yml
+    service: base_bsbm_generator
+  volumes_from:
+    - mongodb_vertical_data
+mongodb_vertical_data:
+  extends:
+    file:  ../base/docker-compose.yml
+    service: base_data

@@ -1,15 +1,9 @@
 base_bsbm_generator:
   build: bsbm_generator
-bsbmloader:
+base_bsbmloader:
   build: bsbmloader
   environment:
-    - db="bsbm"
-  links:
-    - base_mysql
-    - base_mongodb
-    - base_elasticsearch
-    - base_postgres
-    - base_couchdb
+    - db="benchmark"
 base_mysql:
   image: mysql
   ports:
