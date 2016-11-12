@@ -3,6 +3,7 @@
 #generate sql and ttl files
 
 docker-compose up -d
+sleep 60
 docker-compose run mysql_vertical_bsbm sh /bsbm/scripts/bsbm_generator/generateData.sh $1
 
 sleep 60

@@ -1,5 +1,5 @@
 #!/bin/bash
-
+cd ../../scenario/mysql_vertical/
 #import data
 sh start.sh 100
 
