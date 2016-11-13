@@ -2,13 +2,29 @@
 
 #sh start.sh $1
 
-docker-compose up -d
+sh start.sh 250
 
-mysql1Host=$(docker-compose run mongodb_vertical_mysql1 printenv MYSQL_VERTICAL_MYSQL1_PORT_3306_TCP_ADDR)
-mongodbHost=$(docker-compose run mongodb_vertical_mongodb printenv MONGODB_VERTICAL_MONGODB_PORT_27017_TCP_ADDR)
-ret=$(docker-compose run mongodb_vertical_mysql1 mysql -u root --password=password  -s -h  $(echo $mysql1Host) -P  3306   -e "Select count(*) from product" benchmark 2>/dev/null)
-ret2="mongodb_vertical_mongodb  mongo $(echo $mongodbHost)/27017/benchmark --eval 'db.person.count()' 2>/dev/null)"
-echo $ret
-echo $ret2
+ret=$(docker-compose run mongodb_vertical_mysql1 mysql -u root --password=password  -s -h mongodb_vertical_mysql1  -e "Select count(*) from product" benchmark 2>/dev/null)
+ret2=$(docker-compose run mongodb_vertical_mongodb mongo benchmark --quiet --host mongodb_vertical_mongodb --eval "db.person.count()")
 
-#docker-compose stop
+# remove unneeded literal
+ret=$(echo $ret | tr -d -c 0-9)
+ret2=$(echo $ret2 | tr -d -c 0-9)
+
+# Check if database product contains 100 rows
+if [ $ret -eq 250 ]
+  then
+     echo "All 250 products were inserted"
+  else
+     exit 1
+fi
+
+# Check if person product contains 50 rows
+if [ $ret2 -eq 100 ]
+  then
+     echo "All 100 persons were inserted"
+  else
+     exit 1
+fi
+
+docker-compose stop

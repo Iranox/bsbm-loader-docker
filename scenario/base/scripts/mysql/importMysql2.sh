@@ -1,22 +1,17 @@
 #!/bin/bash
 cd /bsbm/data/benchmark/sql
-mysql -u root --password=${MYSQL_VERTICAL_MYSQL2_1_ENV_MYSQL_ROOT_PASSWORD} \
-      -h ${MYSQL_VERTICAL_MYSQL2_1_PORT_3306_TCP_ADDR} \
-      --port=${MYSQL_VERTICAL_MYSQL2_1_PORT_3306_TCP_PORT} \
-       ${MYSQL_VERTICAL_MYSQL2_1_ENV_MYSQL_DATABASE} < 05ProductTypeProduct.sql
-mysql -u root --password=${MYSQL_VERTICAL_MYSQL2_1_ENV_MYSQL_ROOT_PASSWORD}  \
-      -h ${MYSQL_VERTICAL_MYSQL2_1_PORT_3306_TCP_ADDR} \
-      --port=${MYSQL_VERTICAL_MYSQL2_1_PORT_3306_TCP_PORT}  \
-      ${MYSQL_VERTICAL_MYSQL2_1_ENV_MYSQL_DATABASE} < 06ProductFeatureProduct.sql
-mysql -u root --password=${MYSQL_VERTICAL_MYSQL2_1_ENV_MYSQL_ROOT_PASSWORD} \
-      -h ${MYSQL_VERTICAL_MYSQL2_1_PORT_3306_TCP_ADDR} \
-      --port=${MYSQL_VERTICAL_MYSQL2_1_PORT_3306_TCP_PORT} \
-        ${MYSQL_VERTICAL_MYSQL2_1_ENV_MYSQL_DATABASE} < 08Offer.sql
-mysql -u root --password=${MYSQL_VERTICAL_MYSQL2_1_ENV_MYSQL_ROOT_PASSWORD} \
-      -h ${MYSQL_VERTICAL_MYSQL2_1_PORT_3306_TCP_ADDR} \
-      --port=${MYSQL_VERTICAL_MYSQL2_1_PORT_3306_TCP_PORT} \
-        ${MYSQL_VERTICAL_MYSQL2_1_ENV_MYSQL_DATABASE} < 09Person.sql
-mysql -u root --password=${MYSQL_VERTICAL_MYSQL2_1_ENV_MYSQL_ROOT_PASSWORD} \
-      -h ${MYSQL_VERTICAL_MYSQL2_1_PORT_3306_TCP_ADDR} \
-      --port=${MYSQL_VERTICAL_MYSQL2_1_PORT_3306_TCP_PORT} \
-       ${MYSQL_VERTICAL_MYSQL2_1_ENV_MYSQL_DATABASE} < 10Review.sql
+mysql -u root --password=${MYSQL_ROOT_PASSWORD} \
+      -h mysql_vertical_mysql2 \
+       ${MYSQL_DATABASE} < 05ProductTypeProduct.sql
+mysql -u root --password=${MYSQL_ROOT_PASSWORD} \
+      -h mysql_vertical_mysql2 \
+      ${MYSQL_DATABASE}  < 06ProductFeatureProduct.sql
+mysql -u root --password=${MYSQL_ROOT_PASSWORD} \
+      -h mysql_vertical_mysql2 \
+     ${MYSQL_DATABASE} < 08Offer.sql
+mysql -u root --password=${MYSQL_ROOT_PASSWORD} \
+      -h mysql_vertical_mysql2 \
+      ${MYSQL_DATABASE} < 09Person.sql
+mysql -u root --password=${MYSQL_ROOT_PASSWORD} \
+      -h mysql_vertical_mysql2 \
+       ${MYSQL_DATABASE} < 10Review.sql
