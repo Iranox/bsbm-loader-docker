@@ -5,8 +5,8 @@ sh start.sh 100
 
 
 #test First database
-ret=$(docker-compose run mysql_vertical_mysql1 mysql -u root --password=password  -s -h mysql_vertical_mysql1  -e "Select count(*) from product" benchmark 2>/dev/null)
-ret2=$(docker-compose run mysql_vertical_mysql2 mysql -u root --password=password  -s -h  mysql_vertical_mysql2 -e "Select count(*) from person" benchmark 2>/dev/null)
+ret=$(docker-compose  -f ../base/docker-compose.yml -f docker-compose.yml  run base_mysql mysql -u root --password=password  -s -h base_mysql  -e "Select count(*) from product" benchmark 2>/dev/null)
+ret2=$(docker-compose  -f ../base/docker-compose.yml -f docker-compose.yml run mysql_vertical_mysql2 mysql -u root --password=password  -s -h  mysql_vertical_mysql2 -e "Select count(*) from person" benchmark 2>/dev/null)
 
 # remove unneeded literal
 ret=$(echo $ret | tr -d -c 0-9)
@@ -29,4 +29,4 @@ if [ $ret2 -eq 50 ]
 fi
 
 #stop databases
-docker-compose stop
+docker-compose -f ../base/docker-compose.yml -f docker-compose.yml stop
