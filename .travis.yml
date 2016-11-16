@@ -18,5 +18,3 @@ script:
     - cd ..
     - cd scenario/mongodb_vertical
     - sh startTest.sh
-    - docker stop $(docker ps -a -q)
-    - docker rm $(docker ps -a -q)
