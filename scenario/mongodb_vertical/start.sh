@@ -1,25 +1,28 @@
 #!/bin/bash
 
-#generate sql and ttl files
 
-docker-compose up -d
+
+docker-compose -f ../base/docker-compose.yml  -f docker-compose.yml up -d
+
 
 sleep 60
-
-docker-compose run mongodb_vertical_bsbm sh /bsbm/scripts/bsbm_generator/generateData.sh $1
+#generate sql and ttl files
+docker-compose -f ../base/docker-compose.yml  -f docker-compose.yml \
+     run base_bsbm_generator sh /bsbm/scripts/bsbm_generator/generateData.sh $1
 
 #sleep 60
 
-docker-compose run mongodb_vertical_mysql1 sh /bsbm/scripts/mysql/importSqlMongoDb.sh
+docker-compose -f ../base/docker-compose.yml  -f docker-compose.yml \
+               run base_mysql sh /bsbm/scripts/mysql/import_sql.sh
 
 # copy tables to mongodb
-docker-compose run mongodb_vertical_bsbmloader sh /bsbm/scripts/bsbmloader/pasreToMonogo.sh
+docker-compose  -f ../base/docker-compose.yml  -f docker-compose.yml run mongodb_hybrid_vertical_bsbmloader sh /bsbm/scripts/bsbmloader/pasreToMonogo.sh
 
 
 
 #remove unneeded tables
-docker-compose run mongodb_vertical_mysql1 mysql -u root --password=password  -s -h  mongodb_vertical_mysql1 -e "DROP TABLE IF EXISTS person" benchmark
-docker-compose run mongodb_vertical_mysql1 mysql -u root --password=password  -s -h  mongodb_vertical_mysql1 -e "DROP TABLE IF EXISTS review" benchmark
-docker-compose run mongodb_vertical_mysql1 mysql -u root --password=password  -s -h  mongodb_vertical_mysql1 -e "DROP TABLE IF EXISTS offer" benchmark
-docker-compose run mongodb_vertical_mysql1 mysql -u root --password=password  -s -h  mongodb_vertical_mysql1 -e "DROP TABLE IF EXISTS productfeature" benchmark
-docker-compose run mongodb_vertical_mysql1 mysql -u root --password=password  -s -h mongodb_vertical_mysql1  -e "DROP TABLE IF EXISTS productfeatureproduct" benchmark
+docker-compose -f ../base/docker-compose.yml  -f docker-compose.yml run base_mysql mysql -u root --password=password  -s -h  base_mysql -e "DROP TABLE IF EXISTS person" benchmark
+docker-compose -f ../base/docker-compose.yml  -f docker-compose.yml run base_mysql mysql -u root --password=password  -s -h  base_mysql -e "DROP TABLE IF EXISTS review" benchmark
+docker-compose -f ../base/docker-compose.yml  -f docker-compose.yml run base_mysql mysql -u root --password=password  -s -h  base_mysql -e "DROP TABLE IF EXISTS offer" benchmark
+docker-compose -f ../base/docker-compose.yml  -f docker-compose.yml run base_mysql mysql -u root --password=password  -s -h  base_mysql -e "DROP TABLE IF EXISTS productfeature" benchmark
+docker-compose -f ../base/docker-compose.yml  -f docker-compose.yml run base_mysql mysql -u root --password=password  -s -h  base_mysql  -e "DROP TABLE IF EXISTS productfeatureproduct" benchmark

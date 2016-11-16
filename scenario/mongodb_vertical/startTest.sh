@@ -4,8 +4,8 @@
 
 sh start.sh 250
 
-ret=$(docker-compose run mongodb_vertical_mysql1 mysql -u root --password=password  -s -h mongodb_vertical_mysql1  -e "Select count(*) from product" benchmark 2>/dev/null)
-ret2=$(docker-compose run mongodb_vertical_mongodb mongo benchmark --quiet --host mongodb_vertical_mongodb --eval "db.person.count()")
+ret=$(docker-compose  -f ../base/docker-compose.yml  -f docker-compose.yml  run base_mysql mysql -u root --password=password  -s -h base_mysql  -e "Select count(*) from product" benchmark 2>/dev/null)
+ret2=$(docker-compose  -f ../base/docker-compose.yml  -f docker-compose.yml  run mongodb mongo benchmark --quiet --host mongodb --eval "db.person.count()")
 
 # remove unneeded literal
 ret=$(echo $ret | tr -d -c 0-9)
@@ -27,4 +27,4 @@ if [ $ret2 -eq 100 ]
      exit 1
 fi
 
-docker-compose stop
+docker-compose -f ../base/docker-compose.yml  -f docker-compose.yml  stop
