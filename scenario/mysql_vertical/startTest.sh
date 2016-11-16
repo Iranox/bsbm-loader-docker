@@ -29,4 +29,4 @@ if [ $ret2 -eq 50 ]
 fi
 
 #stop databases
-docker-compose stop
+docker-compose -f ../base/docker-compose.yml -f docker-compose.yml stop
