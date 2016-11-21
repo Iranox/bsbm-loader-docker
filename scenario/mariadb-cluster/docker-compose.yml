@@ -1,0 +1,32 @@
+  mariadb-master:
+    image: 'bitnami/mariadb:latest'
+    ports:
+      - "3310:3306"
+    environment:
+      - MARIADB_REPLICATION_MODE=master
+      - MARIADB_REPLICATION_USER=repl_user
+      - MARIADB_REPLICATION_PASSWORD=repl_password
+      - MARIADB_ROOT_PASSWORD=root_password
+      - MARIADB_USER=my_user
+      - MARIADB_PASSWORD=my_password
+      - MARIADB_DATABASE=benchmark
+    volumes_from:
+      - base_data
+  mariadb-slave:
+    image: 'bitnami/mariadb:latest'
+    ports:
+      - '3306'
+    links:
+      - mariadb-master
+    environment:
+      - MARIADB_REPLICATION_MODE=slave
+      - MARIADB_REPLICATION_USER=repl_user
+      - MARIADB_REPLICATION_PASSWORD=repl_password
+      - MARIADB_MASTER_HOST=mariadb-master
+      - MARIADB_MASTER_PORT=3306
+      - MARIADB_MASTER_USER=my_user
+      - MARIADB_MASTER_PASSWORD=my_password
+      - MARIADB_ROOT_PASSWORD=root_password
+      - MARIADB_USER=my_user
+      - MARIADB_PASSWORD=my_password
+      - MARIADB_DATABASE=benchmark
