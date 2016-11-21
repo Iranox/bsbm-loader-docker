@@ -1,0 +1,46 @@
+[mysqld]
+
+# Connection and Thread variables
+
+port                           = 3306
+socket                         = /var/run/mysqld/mysql.sock
+# basedir                        = /usr
+# datadir                        = /var/lib/mysql
+# tmpdir                         = /tmp
+
+max_allowed_packet             = 16M
+default_storage_engine         = InnoDB
+# explicit_defaults_for_timestamp = 1                                  # MySQL 5.6, test carefully! This can have an impact on application.
+
+# character_set_server           = utf8                                # If you prefer utf8
+# collation_server               = utf8_general_ci
+
+
+max_connections                = 505                                 # Values < 1000 are typically good
+max_user_connections           = 500                                 # Limit one specific user/application
+thread_cache_size              = 505                                 # Up to max_connections makes sense
+
+# Query Cache
+
+query_cache_type               = 1                                   # Set to 0 to avoid global QC Mutex
+query_cache_size               = 32M                                 # Avoid too big (> 128M) QC because of QC clean-up lock!
+
+
+# Session variables
+
+sort_buffer_size               = 2M                                  # Could be too big for many small sorts
+tmp_table_size                 = 32M                                 # Make sure your temporary results do NOT contain BLOB/TEXT attributes
+
+read_buffer_size               = 128k                                # Resist to change this parameter if you do not know what you are doing
+read_rnd_buffer_size           = 256k                                # Resist to change this parameter if you do not know what you are doing
+join_buffer_size               = 128k                                # Resist to change this parameter if you do not know what you are doing
+
+
+# Other buffers and caches
+
+table_definition_cache         = 1400                                # As big as many tables you have
+table_open_cache               = 2000                                # connections x tables/connection (~2)
+table_open_cache_instances     = 16                                  # New default in 5.7
+
+
+key_buffer_size                = 8M                                  # Set to 25 - 33 % of RAM if you still use MyISAM
