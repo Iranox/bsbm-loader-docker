@@ -22,7 +22,7 @@ fi
 
 
 # Check if person product contains 50 rows
-if [ $ret2 -eq 25 ]
+if [ $ret2 -eq 50 ]
   then
      echo "All 50 persons were inserted"
   else
