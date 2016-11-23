@@ -1,0 +1,14 @@
+#!/bin/bash
+cd
+cd /bsbm-loader/target/
+
+java -jar bsbmloader-jar-with-dependencies.jar -importMongo -user root -password ${BASE_MYSQL_ENV_MYSQL_ROOT_PASSWORD} -sourceUrl jdbc:mysql://${BASE_MYSQL_PORT_3306_TCP_ADDR}:3306/benchmark -targetUrl ${MONGODB_1_PORT_27017_TCP_ADDR}:27017 -database benchmark -tables person
+java -jar bsbmloader-jar-with-dependencies.jar -importMongo -user root -password ${BASE_MYSQL_ENV_MYSQL_ROOT_PASSWORD} -sourceUrl jdbc:mysql://${BASE_MYSQL_PORT_3306_TCP_ADDR}:3306/benchmark -targetUrl ${MONGODB_2_PORT_27017_TCP_ADDR}:27017 -database benchmark -tables person -tables review -tables offer  -tables productfeature -tables productfeatureproduct
+ java -jar bsbmloader-jar-with-dependencies.jar -importMongo -user root -password ${BASE_MYSQL_ENV_MYSQL_ROOT_PASSWORD} -sourceUrl jdbc:mysql://${BASE_MYSQL_PORT_3306_TCP_ADDR}:3306/benchmark -targetUrl ${MONGODB_3_PORT_27017_TCP_ADDR}:27017 -database benchmark -tables review 
+ java -jar bsbmloader-jar-with-dependencies.jar -importMongo -user root -password ${BASE_MYSQL_ENV_MYSQL_ROOT_PASSWORD} -sourceUrl jdbc:mysql://${BASE_MYSQL_PORT_3306_TCP_ADDR}:3306/benchmark -targetUrl ${MONGODB_4_PORT_27017_TCP_ADDR}:27017 -database benchmark -tables offer
+ java -jar bsbmloader-jar-with-dependencies.jar -importMongo -user root -password ${BASE_MYSQL_ENV_MYSQL_ROOT_PASSWORD} -sourceUrl jdbc:mysql://${BASE_MYSQL_PORT_3306_TCP_ADDR}:3306/benchmark -targetUrl ${MONGODB_5_PORT_27017_TCP_ADDR}:27017 -database benchmark -tables vendor
+ java -jar bsbmloader-jar-with-dependencies.jar -importMongo -user root -password ${BASE_MYSQL_ENV_MYSQL_ROOT_PASSWORD} -sourceUrl jdbc:mysql://${BASE_MYSQL_PORT_3306_TCP_ADDR}:3306/benchmark -targetUrl ${MONGODB_6_PORT_27017_TCP_ADDR}:27017 -database benchmark -tables productfeature
+ java -jar bsbmloader-jar-with-dependencies.jar -importMongo -user root -password ${BASE_MYSQL_ENV_MYSQL_ROOT_PASSWORD} -sourceUrl jdbc:mysql://${BASE_MYSQL_PORT_3306_TCP_ADDR}:3306/benchmark -targetUrl ${MONGODB_7_PORT_27017_TCP_ADDR}:27017 -database benchmark -tables productfeatureproduct
+ java -jar bsbmloader-jar-with-dependencies.jar -importMongo -user root -password ${BASE_MYSQL_ENV_MYSQL_ROOT_PASSWORD} -sourceUrl jdbc:mysql://${BASE_MYSQL_PORT_3306_TCP_ADDR}:3306/benchmark -targetUrl ${MONGODB_8_PORT_27017_TCP_ADDR}:27017 -database benchmark -tables product
+ java -jar bsbmloader-jar-with-dependencies.jar -importMongo -user root -password ${BASE_MYSQL_ENV_MYSQL_ROOT_PASSWORD} -sourceUrl jdbc:mysql://${BASE_MYSQL_PORT_3306_TCP_ADDR}:3306/benchmark -targetUrl ${MONGODB_9_PORT_27017_TCP_ADDR}:27017 -database benchmark -tables producttype
+ java -jar bsbmloader-jar-with-dependencies.jar -importMongo -user root -password ${BASE_MYSQL_ENV_MYSQL_ROOT_PASSWORD} -sourceUrl jdbc:mysql://${BASE_MYSQL_PORT_3306_TCP_ADDR}:3306/benchmark -targetUrl ${MONGODB_10_PORT_27017_TCP_ADDR}:27017 -database benchmark -tables producttypeproduct
