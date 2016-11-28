@@ -15,6 +15,14 @@ default_storage_engine         = InnoDB
 # character_set_server           = utf8                                # If you prefer utf8
 # collation_server               = utf8_general_ci
 
+innodb_buffer_pool_size         = 2G
+innodb_buffer_pool_instances    = 2
+innodb_log_file_size            = 512M
+innodb_log_buffer_size          = 8M
+innodb_flush_log_at_trx_commit  = 1
+innodb_thread_concurrency       = 9
+innodb_flush_method             = O_DIRECT
+innodb_file_per_table
 
 max_connections                = 505                                 # Values < 1000 are typically good
 max_user_connections           = 500                                 # Limit one specific user/application
