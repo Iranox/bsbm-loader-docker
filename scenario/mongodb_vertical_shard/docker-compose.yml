@@ -1,0 +1,42 @@
+mongo-rs1:
+ image: mongo:3.0.6
+ command: mongod --noprealloc --smallfiles --replSet mongors1 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+ volumes:
+  - /data/db
+mongo-rs2:
+ image: mongo:3.0.6
+ command: mongod --noprealloc --smallfiles --replSet mongors1 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+ volumes:
+  - /data/db
+mongo-rs3:
+ image: mongo:3.0.6
+ links:
+   - mongo-rs1:mongo-rs1
+   - mongo-rs2:mongo-rs2
+ volumes_from:
+   - base_data
+ command: mongod --noprealloc --smallfiles --replSet mongors1 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+ volumes:
+  - /data/db
+mongo-cnf:
+ image: mongo:3.0.6
+ command: mongod --noprealloc --smallfiles --dbpath /data/db --configsvr --noauth --port 27017
+ volumes:
+   - /data/db
+mongo-master:
+ image: mongo:3.0.6
+ links:
+  - mongo-cnf:mongo-cnf
+  - mongo-rs1:mongo-rs1
+  - mongo-rs2:mongo-rs2
+  - mongo-rs3:mongo-rs3
+ command: mongos --configdb mongo-cnf:27017 --port 27017
+ volumes_from:
+  - base_data
+mongodb_vertical_bsbmloader:
+  build: ../base/bsbmloader
+  links:
+    - base_mysql
+    - mongo-master
+  volumes_from:
+    - base_data
