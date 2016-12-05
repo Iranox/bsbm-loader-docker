@@ -17,4 +17,4 @@ base_data:
     - ./scripts:/bsbm/scripts
     - /bsbm/data/benchmark/sql
     - /bsbm/data/benchmark/ttl
-    - ./mysql:/etc/mysql/conf.d
+  #  - ./mysql:/etc/mysql/conf.d
