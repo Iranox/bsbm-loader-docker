@@ -22,7 +22,7 @@ docker-compose  -f ../base/docker-compose.yml  -f docker-compose.yml run mysql_h
 
 #test  database
 ret=$(docker-compose  -f ../base/docker-compose.yml -f docker-compose.yml  run mysql_horizontal_mysql3  mysql -u root --password=password  -s -h mysql_horizontal_mysql3  -e "Select count(*) from product" benchmark 2>/dev/null)
-ret2=$(docker-compose  -f ../base/docker-compose.yml -f docker-compose.yml run mysql_horizontal_mysql2 mysql -u root --password=root_password  -s -h  mysql_horizontal_mysql2 -e "Select count(*) from product" benchmark 2>/dev/null)
+ret2=$(docker-compose  -f ../base/docker-compose.yml -f docker-compose.yml run mysql_horizontal_mysql2 mysql -u root --password=password  -s -h  mysql_horizontal_mysql2 -e "Select count(*) from product" benchmark 2>/dev/null)
 
 # remove unneeded literal
 ret=$(echo $ret | tr -d -c 0-9)
