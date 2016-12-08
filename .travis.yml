@@ -24,5 +24,9 @@ script:
     - cd ..
     - cd scenario/mariadb-cluster
     - sh startTest.sh
-    
-    
+    - docker stop $(docker ps -a -q)
+    - docker rm $(docker ps -a -q)
+    - cd ..
+    - cd ..
+    - cd scenario/mysql_horizontal
+    - sh startTest.sh
