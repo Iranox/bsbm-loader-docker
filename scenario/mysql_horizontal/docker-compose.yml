@@ -1,0 +1,22 @@
+mysql_horizontal_mysql2:
+  image: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: password
+    MYSQL_DATABASE: benchmark
+  volumes_from:
+    - base_data
+mysql_horizontal_mysql3:
+  image: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: password
+    MYSQL_DATABASE: benchmark
+  volumes_from:
+    - base_data
+mysql_horizontal_bsbmloader:
+  build: ../base/bsbmloader
+  links:
+    - base_mysql
+    - mysql_horizontal_mysql2
+    - mysql_horizontal_mysql3
+  volumes_from:
+    - base_data

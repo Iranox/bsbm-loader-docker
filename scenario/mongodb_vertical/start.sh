@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 docker-compose -f ../base/docker-compose.yml  -f docker-compose.yml up -d
 
 
