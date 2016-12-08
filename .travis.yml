@@ -30,3 +30,9 @@ script:
     - cd ..
     - cd scenario/mysql_horizontal
     - sh startTest.sh
+    - docker stop $(docker ps -a -q)
+    - docker rm $(docker ps -a -q)
+    - cd ..
+    - cd ..
+    - cd scenario/mongodb_horizontal
+    - sh startTest.sh
