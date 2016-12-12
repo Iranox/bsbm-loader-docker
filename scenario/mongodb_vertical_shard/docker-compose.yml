@@ -1,6 +1,8 @@
 mongo-rs1:
  image: mongo:3.0.6
  command: mongod --noprealloc --smallfiles --replSet mongors1 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+ links:
+  - mongo-cnf:mongo-cnf
  volumes:
   - /data/db
  volumes_from:
@@ -8,6 +10,8 @@ mongo-rs1:
 mongo-rs2:
  image: mongo:3.0.6
  command: mongod --noprealloc --smallfiles --replSet mongors2 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+ links:
+  - mongo-cnf:mongo-cnf
  volumes:
   - /data/db
  volumes_from:
@@ -17,15 +21,13 @@ mongo-rs3:
  volumes_from:
    - base_data
  command: mongod --noprealloc --smallfiles --replSet mongors3 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+ links:
+  - mongo-cnf:mongo-cnf
  volumes:
   - /data/db
 mongo-cnf:
  image: mongo:3.0.6
  command: mongod --noprealloc --smallfiles --dbpath /data/db --configsvr --noauth --port 27017
- links:
-  - mongo-rs1:mongo-rs1
-  - mongo-rs2:mongo-rs2
-  - mongo-rs3:mongo-rs3
  volumes:
    - /data/db
 mongo-master:
