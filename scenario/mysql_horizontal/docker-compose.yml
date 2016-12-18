@@ -1,5 +1,7 @@
 mysql_horizontal_mysql2:
   image: mysql
+  ports:
+    - "5306:3306"
   environment:
     MYSQL_ROOT_PASSWORD: password
     MYSQL_DATABASE: benchmark
@@ -7,6 +9,8 @@ mysql_horizontal_mysql2:
     - base_data
 mysql_horizontal_mysql3:
   image: mysql
+  ports:
+    - "5307:3306"
   environment:
     MYSQL_ROOT_PASSWORD: password
     MYSQL_DATABASE: benchmark

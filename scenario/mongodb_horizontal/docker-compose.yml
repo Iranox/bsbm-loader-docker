@@ -1,9 +1,13 @@
 mysql_horizontal_mongodb:
   image: mongo
+  ports:
+   - "27017:27017"
   volumes_from:
    - base_data
 mysql_horizontal_mysql2:
   image: mysql
+  ports:
+   - "2306:3306"
   environment:
     MYSQL_ROOT_PASSWORD: password
     MYSQL_DATABASE: benchmark

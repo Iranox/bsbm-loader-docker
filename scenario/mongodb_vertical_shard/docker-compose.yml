@@ -33,7 +33,7 @@ mongo-cnf:
 mongo-master:
  image: mongo:3.0.6
  ports:
-   - "27017:27017"
+   - "47017:27017"
  links:
   - mongo-cnf:mongo-cnf
   - mongo-rs1:mongo-rs1
