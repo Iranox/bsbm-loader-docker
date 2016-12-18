@@ -32,7 +32,7 @@ docker-compose -f ../base/docker-compose.yml  -f docker-compose.yml \
           run mongo-master sh /bsbm/scripts/mongodb/addShardsVertical.sh
 
 # copy tables to mongodb
-docker-compose  -f ../base/docker-compose.yml  -f docker-compose.yml run mongodb_vertical_bsbmloader sh /bsbm/scripts/bsbmloader/pasreToMonogoShard.sh
+docker-compose  -f ../base/docker-compose.yml  -f docker-compose.yml run mongodb_vertical_mapbench-datadistributor sh /bsbm/scripts/mapbench-datadistributor/pasreToMonogoShard.sh
 
 #remove unneeded tables
 docker-compose -f ../base/docker-compose.yml  -f docker-compose.yml run base_mysql mysql -u root --password=password  -s -h  base_mysql -e "DROP TABLE IF EXISTS person" benchmark

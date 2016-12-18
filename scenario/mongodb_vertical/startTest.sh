@@ -3,7 +3,7 @@
 sh start.sh 250
 
 ret=$(docker-compose  -f ../base/docker-compose.yml  -f docker-compose.yml  run base_mysql mysql -u root --password=password  -s -h base_mysql  -e "Select count(*) from product" benchmark 2>/dev/null)
-ret2=$(docker-compose  -f ../base/docker-compose.yml  -f docker-compose.yml  run mongodb mongo benchmark --quiet --host mongodb --eval "db.person.count()")
+ret2=$(docker-compose  -f ../base/docker-compose.yml  -f docker-compose.yml  run mongodb_hybrid_vertical_mongodb mongo benchmark --quiet --host mongodb_hybrid_vertical_mongodb --eval "db.person.count()")
 
 # remove unneeded literal
 ret=$(echo $ret | tr -d -c 0-9)

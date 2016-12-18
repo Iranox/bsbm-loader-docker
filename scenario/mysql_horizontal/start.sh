@@ -18,4 +18,4 @@ docker-compose -f ../base/docker-compose.yml  -f docker-compose.yml \
 docker-compose -f ../base/docker-compose.yml  -f docker-compose.yml \
                     run mysql_horizontal_mysql3  sh /bsbm/scripts/mysql/createOfferMySQL3.sh
 
-docker-compose  -f ../base/docker-compose.yml  -f docker-compose.yml run mysql_horizontal_bsbmloader sh /bsbm/scripts/bsbmloader/parseToMySQlHorizintal.sh
+docker-compose  -f ../base/docker-compose.yml  -f docker-compose.yml run mysql_horizontal_mapbench-datadistributor sh /bsbm/scripts/mapbench-datadistributor/parseToMySQlHorizintal.sh

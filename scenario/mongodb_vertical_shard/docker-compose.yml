@@ -42,8 +42,8 @@ mongo-master:
  command: bash -c "sleep 30 && mongos --configdb mongo-cnf:27017 --port 27017"
  volumes_from:
   - base_data
-mongodb_vertical_bsbmloader:
-  build: ../base/bsbmloader
+mongodb_vertical_mapbench-datadistributor:
+  build: ../base/mapbench-datadistributor
   links:
     - base_mysql
     - mongo-master
