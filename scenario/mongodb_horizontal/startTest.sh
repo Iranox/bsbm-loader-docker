@@ -18,7 +18,7 @@ docker-compose -f ../base/docker-compose.yml  -f docker-compose.yml \
 docker-compose -f ../base/docker-compose.yml  -f docker-compose.yml \
                       run mysql_horizontal_mysql2  sh /bsbm/scripts/mysql/createOfferMySQL2.sh
 
-docker-compose  -f ../base/docker-compose.yml  -f docker-compose.yml run mysql_horizontal_bsbmloader sh /bsbm/scripts/bsbmloader/parseToMongoDBHorizintal.sh
+docker-compose  -f ../base/docker-compose.yml  -f docker-compose.yml run mysql_horizontal_mapbench-datadistributor sh /bsbm/scripts/mapbench-datadistributor/parseToMongoDBHorizintal.sh
 
 #test  database
 ret=$(docker-compose  -f ../base/docker-compose.yml  -f docker-compose.yml  run  mysql_horizontal_mysql2 mysql -u root --password=password  -s -h  mysql_horizontal_mysql2  -e "Select count(*) from product" benchmark 2>/dev/null)
