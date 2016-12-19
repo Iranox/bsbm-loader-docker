@@ -1,0 +1,26 @@
+mysql_hybrid_mysql2:
+  image: mysql
+  ports:
+    - "6306:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: password
+    MYSQL_DATABASE: benchmark
+  volumes_from:
+    - base_data
+mysql_hybrid_mysql3:
+  image: mysql
+  ports:
+    - "6307:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: password
+    MYSQL_DATABASE: benchmark
+  volumes_from:
+    - base_data
+mysql_hybrid_mapbench-datadistributor:
+  build: ../base/mapbench-datadistributor
+  links:
+    - base_mysql
+    - mysql_hybrid_mysql2
+    - mysql_hybrid_mysql3
+  volumes_from:
+    - base_data

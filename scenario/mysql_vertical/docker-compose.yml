@@ -1,5 +1,7 @@
 mysql_vertical_mysql2:
   image: mysql
+  ports:
+    - "7306:3306"
   environment:
     MYSQL_ROOT_PASSWORD: password
     MYSQL_DATABASE: benchmark

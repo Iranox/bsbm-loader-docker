@@ -1,0 +1,51 @@
+mongo-rs1:
+ image: mongo:3.0.6
+ command: mongod --noprealloc --smallfiles --replSet mongors1 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+ links:
+  - mongo-cnf:mongo-cnf
+ volumes:
+  - /data/db
+ volumes_from:
+  - base_data
+mongo-rs2:
+ image: mongo:3.0.6
+ command: mongod --noprealloc --smallfiles --replSet mongors2 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+ links:
+  - mongo-cnf:mongo-cnf
+ volumes:
+  - /data/db
+ volumes_from:
+  - base_data
+mongo-rs3:
+ image: mongo:3.0.6
+ volumes_from:
+   - base_data
+ command: mongod --noprealloc --smallfiles --replSet mongors3 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+ links:
+  - mongo-cnf:mongo-cnf
+ volumes:
+  - /data/db
+mongo-cnf:
+ image: mongo:3.0.6
+ command: mongod --noprealloc --smallfiles --dbpath /data/db --configsvr --noauth --port 27017
+ volumes:
+   - /data/db
+mongo-master:
+ image: mongo:3.0.6
+ ports:
+   - "47017:27017"
+ links:
+  - mongo-cnf:mongo-cnf
+  - mongo-rs1:mongo-rs1
+  - mongo-rs2:mongo-rs2
+  - mongo-rs3:mongo-rs3
+ command: bash -c "sleep 30 && mongos --configdb mongo-cnf:27017 --port 27017"
+ volumes_from:
+  - base_data
+mongodb_vertical_mapbench-datadistributor:
+  build: ../base/mapbench-datadistributor
+  links:
+    - base_mysql
+    - mongo-master
+  volumes_from:
+    - base_data

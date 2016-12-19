@@ -5,7 +5,7 @@ base_bsbm_generator:
 base_mysql:
   image: mysql
   ports:
-    - "3307:3306"
+    - "3306:3306"
   environment:
     MYSQL_ROOT_PASSWORD: password
     MYSQL_DATABASE: benchmark
@@ -17,4 +17,4 @@ base_data:
     - ./scripts:/bsbm/scripts
     - /bsbm/data/benchmark/sql
     - /bsbm/data/benchmark/ttl
-    - ./mysql:/etc/mysql/conf.d
+  #  - ./mysql:/etc/mysql/conf.d

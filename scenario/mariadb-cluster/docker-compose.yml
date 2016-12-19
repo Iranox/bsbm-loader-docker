@@ -1,7 +1,7 @@
   mariadb-master:
     image: 'bitnami/mariadb:latest'
     ports:
-      - "3310:3306"
+      - "1306:3306"
     environment:
       - MARIADB_REPLICATION_MODE=master
       - MARIADB_REPLICATION_USER=repl_user

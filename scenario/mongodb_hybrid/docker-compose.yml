@@ -1,0 +1,23 @@
+mongodb_hybrid_mongodb:
+  image: mongo
+  ports:
+   - "77017:27017"
+  volumes_from:
+   - base_data
+mongodb_hybrid_mysql2:
+  image: mysql
+  ports:
+   - "7306:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: password
+    MYSQL_DATABASE: benchmark
+  volumes_from:
+    - base_data
+mongodb_horizontal_mapbench-datadistributor:
+  build: ../base/mapbench-datadistributor
+  links:
+    - base_mysql
+    - mysql_hybrid_mysql2
+    - mysql_hybrid_mongodb
+  volumes_from:
+    - base_data
