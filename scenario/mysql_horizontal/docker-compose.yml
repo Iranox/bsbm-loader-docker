@@ -18,5 +18,9 @@ mysql_horizontal_mysql3:
     - base_data
 mysql_horizontal_mapbench-datadistributor:
   build: ../base/mapbench-datadistributor
+  links:
+    - base_mysql
+    - mysql_horizontal_mysql2
+    - mysql_horizontal_mysql3
   volumes_from:
     - base_data
