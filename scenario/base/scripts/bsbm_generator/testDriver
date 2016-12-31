@@ -1,0 +1,2 @@
+cd ..
+./testdriver http://localhost:8080/openrdf-workbench/repositories/1/query -idir /bsbm/data/sql/td_data -w 50 -runs 100 -o $1
