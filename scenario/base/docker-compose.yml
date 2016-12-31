@@ -19,4 +19,5 @@ services:
       - ./scripts:/bsbm/scripts
       - /bsbm/data/benchmark/sql
       - /bsbm/data/benchmark/ttl
+      - ./results:/bsbm/results
   #  - ./mysql:/etc/mysql/conf.d
