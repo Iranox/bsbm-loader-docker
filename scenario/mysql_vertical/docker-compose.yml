@@ -1,9 +1,11 @@
-mysql_vertical_mysql2:
-  image: mysql
-  ports:
-    - "7306:3306"
-  environment:
-    MYSQL_ROOT_PASSWORD: password
-    MYSQL_DATABASE: benchmark
-  volumes_from:
-    - base_data
+version: '2'  
+services:
+  mysql_vertical_mysql2:
+    image: mysql
+    ports:
+      - "7306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: benchmark
+    volumes_from:
+      - base_data
