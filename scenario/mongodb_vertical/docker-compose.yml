@@ -1,13 +1,16 @@
-mongodb_hybrid_vertical_mongodb:
-  image: mongo
-  ports:
-   - "37017:27017"
-  volumes_from:
-   - base_data
-mongodb_hybrid_vertical_mapbench-datadistributor:
-  build: ../base/mapbench-datadistributor
-  links:
-    - base_mysql
-    - mongodb_hybrid_vertical_mongodb
-  volumes_from:
-    - base_data
+version: '2'
+
+services:
+  mongodb_hybrid_vertical_mongodb:
+    image: mongo
+    ports:
+     - "37017:27017"
+    volumes_from:
+     - base_data
+  mongodb_hybrid_vertical_mapbench-datadistributor:
+    build: ../base/mapbench-datadistributor
+    links:
+      - base_mysql
+      - mongodb_hybrid_vertical_mongodb
+    volumes_from:
+      - base_data

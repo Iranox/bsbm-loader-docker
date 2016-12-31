@@ -1,17 +1,17 @@
 #!/bin/bash
 cd /bsbm/data/benchmark/sql
-mysql -u root --password=${MYSQL_ROOT_PASSWORD} \
+mysql -u root --password=password \
       -h mysql_vertical_mysql2 \
-       ${MYSQL_DATABASE} < 07Vendor.sql
-mysql -u root --password=${MYSQL_ROOT_PASSWORD} \
+       benchmark < 07Vendor.sql
+mysql -u root --password=password \
       -h mysql_vertical_mysql2 \
-      ${MYSQL_DATABASE}  < 06ProductFeatureProduct.sql
-mysql -u root --password=${MYSQL_ROOT_PASSWORD} \
+      benchmark  < 06ProductFeatureProduct.sql
+mysql -u root --password=password \
       -h mysql_vertical_mysql2 \
-     ${MYSQL_DATABASE} < 08Offer.sql
-mysql -u root --password=${MYSQL_ROOT_PASSWORD} \
+     benchmark < 08Offer.sql
+mysql -u root --password=password \
       -h mysql_vertical_mysql2 \
-      ${MYSQL_DATABASE} < 09Person.sql
-mysql -u root --password=${MYSQL_ROOT_PASSWORD} \
+      benchmark < 09Person.sql
+mysql -u root --password=password \
       -h mysql_vertical_mysql2 \
-       ${MYSQL_DATABASE} < 10Review.sql
+       benchmark < 10Review.sql

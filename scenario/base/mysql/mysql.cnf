@@ -8,49 +8,55 @@ socket                         = /var/run/mysqld/mysql.sock
 # datadir                        = /var/lib/mysql
 # tmpdir                         = /tmp
 
-max_allowed_packet             = 16M
+max_allowed_packet             = 1024M
 default_storage_engine         = InnoDB
 # explicit_defaults_for_timestamp = 1                                  # MySQL 5.6, test carefully! This can have an impact on application.
+#thread_concurrency = 8
 
 # character_set_server           = utf8                                # If you prefer utf8
 # collation_server               = utf8_general_ci
 
-innodb_buffer_pool_size         = 2G
-innodb_buffer_pool_instances    = 2
+innodb_buffer_pool_size         = 5600M
+innodb_buffer_pool_instances    = 3
 innodb_log_file_size            = 512M
 innodb_log_buffer_size          = 8M
-innodb_flush_log_at_trx_commit  = 1
+innodb_flush_log_at_trx_commit  = 2
+innodb_thread_concurrency       = 16
 innodb_flush_method             = O_DIRECT
-innodb_io_capacity              = 2000
-innodb_read_io_threads          = 64
-innodb_thread_concurrency       = 0
-innodb_write_io_threads         = 64
+innodb_file_per_table
+ transaction-isolation = READ-COMMITTED
 
-max_connections                = 505                                 # Values < 1000 are typically good
+max_connections                = 500                                 # Values < 1000 are typically good
 max_user_connections           = 500                                 # Limit one specific user/application
-thread_cache_size              = 505                                 # Up to max_connections makes sense
+thread_cache_size              = 286                                # Up to max_connections makes sense
+ thread_stack		= 1M
+key_buffer=128M
+table_cache=4000
 
+bulk_insert_buffer_size = 64M
 # Query Cache
 
 query_cache_type               = 1                                   # Set to 0 to avoid global QC Mutex
-query_cache_size               = 32M                                 # Avoid too big (> 128M) QC because of QC clean-up lock!
+query_cache_size               = 1024M
+query_cache_limit=2M
+query_cache_type=1                             # Avoid too big (> 128M) QC because of QC clean-up lock!
 
 
 # Session variables
 
-sort_buffer_size               = 2M                                  # Could be too big for many small sorts
-tmp_table_size                 = 32M                                 # Make sure your temporary results do NOT contain BLOB/TEXT attributes
+sort_buffer_size               = 16M                                  # Could be too big for many small sorts
+tmp_table_size                 = 128M                                # Make sure your temporary results do NOT contain BLOB/TEXT attributes
 
-read_buffer_size               = 128k                                # Resist to change this parameter if you do not know what you are doing
-read_rnd_buffer_size           = 256k                                # Resist to change this parameter if you do not know what you are doing
-join_buffer_size               = 128k                                # Resist to change this parameter if you do not know what you are doing
+read_buffer_size               = 8                                # Resist to change this parameter if you do not know what you are doing
+read_rnd_buffer_size           = 16M                                # Resist to change this parameter if you do not know what you are doing
+join_buffer_size               = 8M                               # Resist to change this parameter if you do not know what you are doing
 
 
 # Other buffers and caches
 
 table_definition_cache         = 1400                                # As big as many tables you have
 table_open_cache               = 2000                                # connections x tables/connection (~2)
-table_open_cache_instances     = 16                                  # New default in 5.7
+#table_open_cache_instances     = 16                                  # New default in 5.7
 
 
 key_buffer_size                = 8M                                  # Set to 25 - 33 % of RAM if you still use MyISAM

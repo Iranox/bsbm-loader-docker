@@ -1,23 +1,25 @@
-mysql_horizontal_mongodb:
-  image: mongo
-  ports:
-   - "27017:27017"
-  volumes_from:
-   - base_data
-mysql_horizontal_mysql2:
-  image: mysql
-  ports:
-   - "2306:3306"
-  environment:
-    MYSQL_ROOT_PASSWORD: password
-    MYSQL_DATABASE: benchmark
-  volumes_from:
-    - base_data
-mysql_horizontal_mapbench-datadistributor:
-  build: ../base/mapbench-datadistributor
-  links:
-    - base_mysql
-    - mysql_horizontal_mysql2
-    - mysql_horizontal_mongodb
-  volumes_from:
-    - base_data
+version: '2'
+services:
+  mysql_horizontal_mongodb:
+    image: mongo
+    ports:
+     - "27017:27017"
+    volumes_from:
+     - base_data
+  mysql_horizontal_mysql2:
+    image: mysql
+    ports:
+     - "2306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: benchmark
+    volumes_from:
+      - base_data
+  mysql_horizontal_mapbench-datadistributor:
+    build: ../base/mapbench-datadistributor
+    depends_on:
+      - base_mysql
+      - mysql_horizontal_mysql2
+      - mysql_horizontal_mongodb
+    volumes_from:
+      - base_data

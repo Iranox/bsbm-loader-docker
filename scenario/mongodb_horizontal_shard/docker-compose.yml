@@ -1,61 +1,63 @@
-mongo-rs1-horizontal:
- image: mongo:3.0.6
- command: mongod --noprealloc --smallfiles --replSet mongors1 --dbpath /data/db --nojournal --oplogSize 16 --noauth
- links:
-  - mongo-cnf-horizontal:mongo-cnf-horizontal
- volumes:
-  - /data/db
- volumes_from:
-  - base_data
-mongo-rs2-horizontal:
- image: mongo:3.0.6
- command: mongod --noprealloc --smallfiles --replSet mongors2 --dbpath /data/db --nojournal --oplogSize 16 --noauth
- links:
-  - mongo-cnf-horizontal:mongo-cnf-horizontal
- volumes:
-  - /data/db
- volumes_from:
-  - base_data
-mongo-rs3-horizontal:
- image: mongo:3.0.6
- volumes_from:
-   - base_data
- command: mongod --noprealloc --smallfiles --replSet mongors3 --dbpath /data/db --nojournal --oplogSize 16 --noauth
- links:
-  - mongo-cnf-horizontal:mongo-cnf-horizontal
- volumes:
-  - /data/db
-mongo-cnf-horizontal:
- image: mongo:3.0.6
- command: mongod --noprealloc --smallfiles --dbpath /data/db --configsvr --noauth --port 27017
- volumes:
-   - /data/db
-mongo-master-horizontal:
- image: mongo:3.0.6
- ports:
-   - "8017:27017"
- links:
-  - mongo-cnf-horizontal:mongo-cnf-horizontal
-  - mongo-rs1-horizontal:mongo-rs1-horizontal
-  - mongo-rs2-horizontal:mongo-rs2-horizontal
-  - mongo-rs3-horizontal:mongo-rs3-horizontal
- command: bash -c "sleep 30 && mongos --configdb mongo-cnf-horizontal:27017 --port 27017"
- volumes_from:
-  - base_data
-mongodb_vertical_mapbench-datadistributor:
-  build: ../base/mapbench-datadistributor
+version: '2'
+services:
+ mongo-rs1-horizontal:
+  image: mongo:3.0.6
+  command: mongod --noprealloc --smallfiles --replSet mongors1 --dbpath /data/db --nojournal --oplogSize 16 --noauth
   links:
-    - mysql_horizontal_mysql2
-    - base_mysql
-    - mongo-master-horizontal
+   - mongo-cnf-horizontal:mongo-cnf-horizontal
+  volumes:
+   - /data/db
+  volumes_from:
+   - base_data
+ mongo-rs2-horizontal:
+  image: mongo:3.0.6
+  command: mongod --noprealloc --smallfiles --replSet mongors2 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+  links:
+   - mongo-cnf-horizontal:mongo-cnf-horizontal
+  volumes:
+   - /data/db
+  volumes_from:
+   - base_data
+ mongo-rs3-horizontal:
+  image: mongo:3.0.6
   volumes_from:
     - base_data
-mysql_horizontal_mysql2:
-  image: mysql
+  command: mongod --noprealloc --smallfiles --replSet mongors3 --dbpath /data/db --nojournal --oplogSize 16 --noauth
+  links:
+   - mongo-cnf-horizontal:mongo-cnf-horizontal
+  volumes:
+   - /data/db
+ mongo-cnf-horizontal:
+  image: mongo:3.0.6
+  command: mongod --noprealloc --smallfiles --dbpath /data/db --configsvr --noauth --port 27017
+  volumes:
+    - /data/db
+ mongo-master-horizontal:
+  image: mongo:3.0.6
   ports:
-   - "8306:3306"
-  environment:
-    MYSQL_ROOT_PASSWORD: password
-    MYSQL_DATABASE: benchmark
+    - "8017:27017"
+  links:
+   - mongo-cnf-horizontal:mongo-cnf-horizontal
+   - mongo-rs1-horizontal:mongo-rs1-horizontal
+   - mongo-rs2-horizontal:mongo-rs2-horizontal
+   - mongo-rs3-horizontal:mongo-rs3-horizontal
+  command: bash -c "sleep 30 && mongos --configdb mongo-cnf-horizontal:27017 --port 27017"
   volumes_from:
-    - base_data
+   - base_data
+ mongodb_vertical_mapbench-datadistributor:
+   build: ../base/mapbench-datadistributor
+   links:
+     - mysql_horizontal_mysql2
+     - base_mysql
+     - mongo-master-horizontal
+   volumes_from:
+     - base_data
+ mysql_horizontal_mysql2:
+   image: mysql
+   ports:
+    - "8306:3306"
+   environment:
+     MYSQL_ROOT_PASSWORD: password
+     MYSQL_DATABASE: benchmark
+   volumes_from:
+     - base_data

@@ -1,3 +1,5 @@
+version: '2'
+services:
   mariadb-master:
     image: 'bitnami/mariadb:latest'
     ports:

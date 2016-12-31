@@ -12,7 +12,7 @@ docker-compose -f ../base/docker-compose.yml  -f docker-compose.yml \
                          run base_mysql sh /bsbm/scripts/mysql/importSqlMongoDB.sh
 
 docker-compose -f ../base/docker-compose.yml -f docker-compose.yml start mongo-master
-docker-compose -f ../base/docker-compose.yml -f docker-compose.yml ps
+
 
 docker-compose -f ../base/docker-compose.yml  -f docker-compose.yml \
      run mongo-rs1 sh /bsbm/scripts/mongodb/mongoReplica.sh
