@@ -7,5 +7,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: benchmark
+    volumes:
+      - ./mysql:/etc/mysql/conf.d
     volumes_from:
       - base_data
