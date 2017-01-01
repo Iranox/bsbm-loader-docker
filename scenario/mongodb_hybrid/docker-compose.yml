@@ -7,7 +7,7 @@ services:
     volumes_from:
      - base_data
   mongodb_hybrid_mysql2:
-    image: mysql
+    image: mysql:5.5
     ports:
      - "7306:3306"
     environment:

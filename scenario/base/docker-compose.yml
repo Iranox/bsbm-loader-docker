@@ -11,13 +11,15 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: benchmark
+    volumes:
+      - ./mysql:/etc/mysql/conf.d
     volumes_from:
       - base_data
   base_data:
     image: java
     volumes:
       - ./scripts:/bsbm/scripts
+      - ./ontop-queries:/bsbm/ontop-queries
       - /bsbm/data/benchmark/sql
       - /bsbm/data/benchmark/ttl
       - ./results:/bsbm/results
-  #  - ./mysql:/etc/mysql/conf.d

@@ -2,7 +2,7 @@ version: '2'
 
 services:
   mysql_hybrid_mysql2:
-    image: mysql
+    image: mysql:5.5
     ports:
       - "6306:3306"
     environment:
@@ -21,9 +21,5 @@ services:
       - base_data
   mysql_hybrid_mapbench-datadistributor:
     build: ../base/mapbench-datadistributor
-    links:
-      - base_mysql
-      - mysql_hybrid_mysql2
-      - mysql_hybrid_mysql3
     volumes_from:
       - base_data

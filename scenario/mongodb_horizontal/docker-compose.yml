@@ -7,7 +7,7 @@ services:
     volumes_from:
      - base_data
   mysql_horizontal_mysql2:
-    image: mysql
+    image: mysql:5.5
     ports:
      - "2306:3306"
     environment:
