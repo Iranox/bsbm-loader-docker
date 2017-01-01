@@ -1,4 +1,4 @@
-l[mysqld]
+[mysqld]
 
 # Connection and Thread variables
 
