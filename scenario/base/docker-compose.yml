@@ -17,7 +17,8 @@ services:
     image: java
     volumes:
       - ./scripts:/bsbm/scripts
+      - ./ontop-queries:/bsbm/ontop-queries
       - /bsbm/data/benchmark/sql
       - /bsbm/data/benchmark/ttl
       - ./results:/bsbm/results
-  #  - ./mysql:/etc/mysql/conf.d
+      - ./mysql:/etc/mysql/conf.d
