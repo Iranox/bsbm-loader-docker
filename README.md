@@ -1,5 +1,5 @@
+[![Build Status](https://travis-ci.org/Iranox/mapbench-data.svg?branch=develop)](https://travis-ci.org/Iranox/mapbench-data)
 
-[![Build Status](https://travis-ci.org/Iranox/mapbench-data.svg?branch=feature%2Fteiid)](https://travis-ci.org/Iranox/mapbench-data)
 
 # bsbmloader-docker
 
@@ -27,7 +27,7 @@ You can start with
 ``cd scripts``    
 ``sh start.sh 250``
 
-This creates two datasets (MySQL and ttl) with 250 products. If you need a larger 
+This creates two datasets (MySQL and ttl) with 250 products. If you need a larger
 dataset you must change the number 250 to another number.  
 
 ## Errors
