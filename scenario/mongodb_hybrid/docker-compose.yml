@@ -4,6 +4,7 @@ services:
     image: mongo
     ports:
      - "77017:27017"
+    mem_limit: 2g
     volumes_from:
      - base_data
   mongodb_hybrid_mysql2:
@@ -13,6 +14,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: benchmark
+    volumes:
+      - ./../base/mysql:/etc/mysql/conf.d
     volumes_from:
       - base_data
   mongodb_horizontal_mapbench-datadistributor:

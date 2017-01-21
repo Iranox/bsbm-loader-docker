@@ -5,6 +5,7 @@ services:
   command: mongod --noprealloc --smallfiles --replSet mongors1 --dbpath /data/db --nojournal --oplogSize 16 --noauth
   volumes:
    - /data/db
+  mem_limit: 500m
   volumes_from:
    - base_data
  mongo-rs2-horizontal:
@@ -12,12 +13,14 @@ services:
   command: mongod --noprealloc --smallfiles --replSet mongors2 --dbpath /data/db --nojournal --oplogSize 16 --noauth
   volumes:
    - /data/db
+  mem_limit: 500m
   volumes_from:
    - base_data
  mongo-rs3-horizontal:
   image: mongo:3.0.6
   volumes_from:
     - base_data
+  mem_limit: 500m
   command: mongod --noprealloc --smallfiles --replSet mongors3 --dbpath /data/db --nojournal --oplogSize 16 --noauth
   volumes:
    - /data/db
@@ -41,6 +44,8 @@ services:
    image: mysql:5.5
    ports:
     - "8306:3306"
+   volumes:
+    - ./mysql:/etc/mysql/conf.d
    environment:
      MYSQL_ROOT_PASSWORD: password
      MYSQL_DATABASE: benchmark
